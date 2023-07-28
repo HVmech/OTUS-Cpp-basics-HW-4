@@ -34,7 +34,6 @@ class Parser {
     ASTNode *spec();
 
     int braces_ = 0;
-    bool div_ = true;
     bool mode_ = true;
     Lexer &lexer_;
     Lexer::Token tok_ = Lexer::Token::Spec;

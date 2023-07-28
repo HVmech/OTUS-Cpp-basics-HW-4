@@ -46,8 +46,13 @@ class Div : public ASTNode {
     Div(ASTNode *lhs, ASTNode *rhs)
         : ASTNode(std::string(1, '/'), lhs, rhs)
         {
-          if(rhs->value()) {
-            set_val(lhs->value()/rhs->value());
+          if (rhs->value()) {
+            if (rhs->value() == 0){
+              throw calcexception{calcexception::CalcErrorCode::DivisionByZero};
+            }
+            else  {
+              set_val(lhs->value()/rhs->value());
+            }
           } else{
             throw calcexception{calcexception::CalcErrorCode::DivisionByZero};
           }
