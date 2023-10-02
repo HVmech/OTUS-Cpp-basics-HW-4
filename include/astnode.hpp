@@ -4,8 +4,9 @@
 #include <iostream>
 #include <string>
 
-class ASTNode {
-  public:
+class ASTNode
+{
+public:
     explicit ASTNode(const std::string &repr);
 
     ASTNode(const std::string &repr, ASTNode *lhs, ASTNode *rhs);
@@ -16,18 +17,25 @@ class ASTNode {
 
     virtual ~ASTNode();
     
-    std::string repr() const { return repr_; }
+    std::string repr() const
+    {
+        return repr_;
+    }
 
     void print(std::ostream &out) const;
 
-    int value() { return val_; };
-
-  protected:
-    void set_val(int val){
-      val_ = val;
+    int value()
+    {
+        return val_;
     }
 
-  private:
+protected:
+    void set_val(int val)
+    {
+        val_ = val;
+    }
+
+private:
     void inner_print(std::ostream &out, size_t indent) const;
 
     int val_;
