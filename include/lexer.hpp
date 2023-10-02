@@ -3,9 +3,11 @@
 #include <istream>
 #include <string>
 
-class Lexer {
-  public:
-    enum class Token {
+class Lexer
+{
+public:
+    enum class Token
+    {
         Number,
         Operator,
         End,
@@ -24,24 +26,35 @@ class Lexer {
 
     Token next_token();
 
-    int get_number() const { return number_; }
+    int get_number() const
+    {
+        return number_;
+    }
 
-    std::string get_operator() const { return operator_; }
+    std::string get_operator() const
+    {
+        return operator_;
+    }
 
-    std::string get_name() const { return name_; }
+    std::string get_name() const
+    {
+        return name_;
+    }
 
-  protected:
+protected:
     bool isbrace(char ch) const;
 
     bool isoperator(char ch) const;
 
-  private:
-    enum class State {
+private:
+    enum class State
+    {
         Empty,
         ReadNumber,
         ReadName,
         End,
     };
+
     char next_char();
     bool end() const;
 
@@ -56,19 +69,28 @@ class Lexer {
 inline Lexer::Lexer(std::istream &in)
     : state_(State::Empty)
     , number_(0)
-    , in_(in) {
+    , in_(in)
+{
     next_char();
 }
 
-inline char Lexer::next_char() {
+inline char Lexer::next_char()
+{
     in_.get(ch_);
     return ch_;
 }
 
-inline bool Lexer::end() const { return in_.eof() || ch_ == '\n'; }
+inline bool Lexer::end() const
+{
+    return in_.eof() || ch_ == '\n';
+}
 
-inline bool Lexer::isbrace(char ch) const { return ch == '(' || ch == ')'; }
+inline bool Lexer::isbrace(char ch) const
+{
+    return ch == '(' || ch == ')';
+}
 
-inline bool Lexer::isoperator(char ch) const {
+inline bool Lexer::isoperator(char ch) const
+{
     return ch == '+' || ch == '-' || ch == '*' || ch == '/';
 }
