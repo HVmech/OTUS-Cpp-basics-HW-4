@@ -5,8 +5,9 @@
 #include "astnode.hpp"
 #include "lexer.hpp"
 
-class Parser {
-  public:
+class Parser
+{
+public:
     explicit Parser(Lexer &lexer)
         : lexer_(lexer) {}
 
@@ -22,7 +23,7 @@ class Parser {
 
     void checkbraces();
 
-  private:
+private:
     void next_token();
 
     ASTNode *expr();
